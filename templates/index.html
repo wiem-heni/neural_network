@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Deep learning</title>
+    <link rel="icon" href="static/icon.PNG">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        .btn {
+            border-color: rgb(17, 94, 90);  
+            color: rgb(17, 94, 90);
+        }
+        .btn:hover {
+            background-color: rgb(17, 94, 90);
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:0.75px solid rgba(0, 0, 0, 0.15);">
+        <a class="navbar-brand" href="#"><span class="pt-1" style="font-weight:bold;color:rgb(28, 163, 157);">Deep learning</span> 
+            <img src="static/icon.PNG" width="42px" height="42px"/> <span class="pt-1">classification</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto ml-3">
+            <li class="nav-item w-100">
+                <form class="d-flex justify-content-center flex-wrap" method="post" enctype="multipart/form-data">
+
+                    <div class="btn-div" style="width:520px;">
+                        <div class="input-group pt-1 pl-2"> 
+                            <div class="custom-file w-100">
+                                <input type="file" class="custom-file-input p-0" name="query_img">
+                                <div class="custom-file-label p-0 pt-2 pl-1 file text-left"  style="width:410px;">
+                                    {% if query_path %}
+                                        <span style="font-weight:bold;">{{ query_path[query_path.rindex('_')+1:] }}</span> loaded successfully . . . 
+                                    {% else %}
+                                        File
+                                    {% endif %}
+                                </div>
+                                <button class="btn btn-outline-success ml-1" type="submit">Predict</button>
+                            </div>
+                        </div>
+                    </div>  
+                    
+                </form>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row h-100">
+        <div class="col-3 pt-5" style="height:65vh;border-right:0.75px solid rgba(0, 0, 0, 0.15);border-bottom:0.75px solid rgba(0, 0, 0, 0.15);">
+            <div style="text-align:center">
+                <h3>Downloaded Image</h3>
+                {% if query_path %}
+                    <img src="{{ query_path }}" width="315px" height="280px" style="border:1px solid rgb(17, 94, 90);"/>
+                {% else %}
+                    <img src="https://agriculture.gouv.bj/img/noimage.jpg" width="315px" height="280px" style="border:1px solid rgb(17, 94, 90);"/>
+                {% endif %}
+                <div class="d-flex justify-content-center pt-3">
+                    <img src="static/icon.PNG" width="64px" height="64px"/>
+                </div>
+                {% if query_path %}
+                <div class="d-flex justify-content-center pt-2">
+                    Duration : <span style="font-weight:bold;color:rgb(17, 94, 90);"> &nbsp; {{ time }} s</span>
+                </div>
+                <div class="d-flex justify-content-center pt-1">
+                    Result of the prediction : <span style="font-weight:bold;color:rgba(0, 0, 0, 0.619);font-size:105%;"> &nbsp;{{ prediction }} </span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="h-100 col-9">
+            <div class="container row d-flex justify-content-center">
+                <div class="mt-5 p-1 pl-3" style="border:1px solid rgba(0, 0, 0, 0.15);background:#28a74608;border-radius:5px;">
+                    <span style="font-weight:bold;"><span class="pt-1" style="color:rgb(28, 163, 157);">Deep learning</span> <img src="static/icon.PNG" width="32px" height="32px"/> <span class="pt-1">classification</span></span> : 
+                    is an Image classifier using Convolutional Neural Network (CNNs) a subtype of Neural Networks that is mainly used for applications in image recognition. Its built-in convolutional layer reduces the high dimensionality of images without losing its information.
+                </div>
+                <br/>
+                <figure class="col-4 p-1 mt-4">
+                    <div class="w-100 d-flex justify-content-center pt-1 pb-1">
+                        <img src="static/matrice.png" class="w-100" height="220px" style="border:1px solid #0d3c181a;">
+                    </div>
+                    <figcaption class="d-flex justify-content-center" style="border:1px solid #0d3c181a;background:#28a74609;">
+                        Confusion matrix
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+      </div>
+      
+</body>
+
+</html>

@@ -9,7 +9,7 @@ Our dataset contains three classes. The learned features and the classification 
 
 To implement this solution we used:
 
-TensorFlow: The core open-source library to help you develop and train ML models. 
+TensorFlow: The core open-source library to help develop and train ML models. 
 
 Keras: Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow. 
 
